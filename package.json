@@ -1,0 +1,29 @@
+{
+  "name": "ahimsa-contentful-gatsby",
+  "private": true,
+  "description": "Ahimsa Gatsby Site",
+  "version": "1.0.0",
+  "author": "Paul McCrodden <info@paulmccrodden.com> (paulmccrodden.com)",
+  "dependencies": {
+    "gatsby": "latest",
+    "gatsby-link": "latest",
+    "gatsby-source-contentful": "latest",
+    "gatsby-transformer-remark": "^1.7.21",
+    "lodash": "^4.16.4",
+    "slash": "^1.0.0"
+  },
+  "devDependencies": {
+    "dotenv": "^5.0.0",
+    "gatsby-cli": "^1.1.23"
+  },
+  "keywords": [
+    "gatsby"
+  ],
+  "license": "MIT",
+  "main": "n/a",
+  "scripts": {
+    "develop": "gatsby develop",
+    "build": "gatsby build",
+    "start": "gatsby serve"
+  }
+}
