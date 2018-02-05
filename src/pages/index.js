@@ -1,6 +1,9 @@
 import React from 'react'
+import graphql from 'graphql'
 import Link from 'gatsby-link'
 import * as PropTypes from 'prop-types'
+// import { getUserLangKey } from 'ptz-i18n'
+// import { withPrefix } from 'gatsby-link'
 
 const propTypes = {
   data: PropTypes.object.isRequired
@@ -10,7 +13,7 @@ const General = ({ node }) => (
   <div>
     <Link
       style={{ color: `inherit`, textDecoration: `none` }}
-      to={`/general/${node.id}/`}
+      to={`/${node.node_locale}/${node.slug}/`}
     >
       <div
         style={{
@@ -22,13 +25,34 @@ const General = ({ node }) => (
         <div>
           <h1>{node.title}</h1>
           {/* <div>{node.body.body}</div> */}
+          {console.log(node)}
         </div>
       </div>
     </Link>
   </div>
 )
 
-class IndexPage extends React.Component {
+class IndexPage extends React.PureComponent {
+  /* SKIP THIS PART FOR NOW FOR SETTING DEFAULT LANG */
+  // constructor (args) {
+  //   super(args)
+
+  //   // Skip build, Browsers only
+  //   if (typeof window !== 'undefined') {
+  //     const { langs, defaultLangKey } = args.data.site.siteMetadata.languages
+  //     const langKey = getUserLangKey(langs, defaultLangKey)
+  //     const homeUrl = withPrefix(`/${langKey}/`)
+
+  //     // I don`t think this is the best solution
+  //     // I would like to use Gatsby Redirects like:
+  //     // https://github.com/gatsbyjs/gatsby/tree/master/examples/using-redirects
+  //     // But Gatsby Redirects are static, they need to be specified at build time,
+  //     // This redirect is dynamic, It needs to know the user browser language.
+  //     // Any ideias? Join the issue: https://github.com/angeloocana/gatsby-starter-default-i18n/issues/4
+  //     window.___history.replace(homeUrl)
+  //   }
+  // }
+
   render () {
     const enGeneralEdges = this.props.data.en.edges
     const jaGeneralEdges = this.props.data.ja.edges
@@ -65,7 +89,9 @@ query PageQuery {
     edges {
       node {
         id
+        node_locale
         title
+        slug
         body {
           body
         }
@@ -76,10 +102,20 @@ query PageQuery {
     edges {
       node {
         id
+        node_locale
         title
+        slug
         body {
           body
         }
+      }
+    }
+  }
+  site{
+    siteMetadata{
+      languages {
+        defaultLangKey
+        langs
       }
     }
   }
