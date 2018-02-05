@@ -1,30 +1,63 @@
 import React from 'react'
-import Link from 'gatsby-link'
 import * as PropTypes from 'prop-types'
+import Header from '../components/Header'
+import Helmet from 'react-helmet'
+import { getCurrentLangKey, getLangs, getUrlForLang } from 'ptz-i18n'
+import { IntlProvider } from 'react-intl'
+import 'intl'
+import './index.css'
 
-const propTypes = {
-  children: PropTypes.func.isRequired
-}
+const TemplateWrapper = ({ children, data, location, i18nMessages }) => {
+  const url = location.pathname
+  const { langs, defaultLangKey } = data.site.siteMetadata.languages
+  const langKey = getCurrentLangKey(langs, defaultLangKey, url)
+  const homeLink = `/${langKey}/`
+  const langsMenu = getLangs(langs, langKey, getUrlForLang(homeLink, url))
 
-class DefaultLayout extends React.Component {
-  render () {
-    return (
+  return (
+    <IntlProvider
+      locale={langKey}
+      messages={i18nMessages}
+    >
       <div>
-        <Link style={{ textDecoration: `none` }} to='/'>
-          <h3 style={{ color: `tomato` }}>
-            A title coming from layout JS.
-          </h3>
-        </Link>
-        {this.props.children()}
-        <hr />
-        <p>
-          Perhaps footer content here from layout JS.
-        </p>
+        <Helmet
+          title='Gatsby Default Starter'
+          meta={[
+            { name: 'description', content: 'Sample' },
+            { name: 'keywords', content: 'sample, something' }
+          ]}
+        />
+        <Header langs={langsMenu} />
+        <div
+          style={{
+            margin: '0 auto',
+            maxWidth: 960,
+            padding: '0px 1.0875rem 1.45rem',
+            paddingTop: 0
+          }}
+        >
+          {children()}
+        </div>
       </div>
-    )
-  }
+    </IntlProvider>
+  )
 }
 
-DefaultLayout.propTypes = propTypes
+TemplateWrapper.propTypes = {
+  children: PropTypes.func
+}
 
-export default DefaultLayout
+export default TemplateWrapper
+
+export const pageQuery = graphql`
+  query Layout {
+    site {
+      siteMetadata {
+        languages {
+          defaultLangKey
+          langs
+        }
+      }
+    }
+  }
+`

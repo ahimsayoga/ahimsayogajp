@@ -19,6 +19,8 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
             edges {
               node {
                 id
+                node_locale
+                slug
               }
             }
           }
@@ -31,12 +33,14 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
         // Create pages for each markdown file.
         _.each(result.data.allContentfulGeneral.edges, edge => {
           createPage({
-            path: `/general/${edge.node.id}/`,
+            path: `/${edge.node.node_locale}/${edge.node.slug}`,
             component: slash(GeneralTemplate),
             // In your blog post template's graphql query, you can use path
             // as a GraphQL variable to query for data from the markdown file.
             context: {
-              id: edge.node.id
+              id: edge.node.id,
+              node_locale: edge.node.node_locale,
+              slug: edge.node.slug
             }
           })
         })
