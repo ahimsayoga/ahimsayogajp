@@ -34,6 +34,7 @@ const General = ({ node }) => (
 
 class IndexPage extends React.PureComponent {
   /* SKIP THIS PART FOR NOW FOR SETTING DEFAULT LANG */
+  /* This can be set now, but we need to create menu first for simplicity */
   // constructor (args) {
   //   super(args)
 
