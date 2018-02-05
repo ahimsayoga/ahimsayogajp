@@ -30,7 +30,7 @@ const General = ({ node }) => (
 
 class IndexPage extends React.Component {
   render () {
-    const ieGeneralEdges = this.props.data.ie.edges
+    const enGeneralEdges = this.props.data.en.edges
     const jaGeneralEdges = this.props.data.ja.edges
     return (
       <div>
@@ -40,8 +40,8 @@ class IndexPage extends React.Component {
         </p>
         <br />
         <br />
-        <h3>en-IE - General Pages</h3>
-        {ieGeneralEdges.map(({ node }, i) => (
+        <h3>en - General Pages</h3>
+        {enGeneralEdges.map(({ node }, i) => (
           <General node={node} key={node.id} />
         ))}
         <br />
@@ -61,7 +61,7 @@ export default IndexPage
 
 export const pageQuery = graphql`
 query PageQuery {
-  ie: allContentfulGeneral(filter: { node_locale: { eq: "en-IE" } }) {
+  en: allContentfulGeneral(filter: { node_locale: { eq: "en" } }) {
     edges {
       node {
         id

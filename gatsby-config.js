@@ -14,6 +14,13 @@ module.exports = {
     },
     `gatsby-transformer-remark`,
     {
+      resolve: 'gatsby-plugin-i18n',
+      options: {
+        langKeyDefault: 'en',
+        useLangKeyLayout: false
+      }
+    },
+    {
       resolve: `gatsby-plugin-netlify`,
       options: {
         headers: {}, // option to add more headers. `Link` headers are transformed by the below criteria
