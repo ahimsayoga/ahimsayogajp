@@ -7,7 +7,7 @@ import { IntlProvider } from 'react-intl'
 import 'intl'
 import './index.css'
 
-const TemplateWrapper = ({ children, data, location, i18nMessages }) => {
+const DefaultLayout = ({ children, data, location, i18nMessages }) => {
   const url = location.pathname
   const { langs, defaultLangKey } = data.site.siteMetadata.languages
   const langKey = getCurrentLangKey(langs, defaultLangKey, url)
@@ -43,11 +43,11 @@ const TemplateWrapper = ({ children, data, location, i18nMessages }) => {
   )
 }
 
-TemplateWrapper.propTypes = {
+DefaultLayout.propTypes = {
   children: PropTypes.func
 }
 
-export default TemplateWrapper
+export default DefaultLayout
 
 export const pageQuery = graphql`
   query Layout {
