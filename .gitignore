@@ -9,3 +9,6 @@ node_modules/
 .intermediate-representation/
 .env
 public/
+node_modules
+.cache/
+yarn-error.log
