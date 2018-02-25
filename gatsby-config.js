@@ -1,16 +1,27 @@
+const languages = require('./src/data/languages');
+
 module.exports = {
   siteMetadata: {
-    title: 'Ahimsa Yoga'
+    title: `Gatsby with Contentful`,
+    languages
   },
   plugins: [
-    'gatsby-plugin-react-helmet',
-    `gatsby-plugin-styled-components`,
+    `gatsby-plugin-react-helmet`,
     {
-      resolve: `gatsby-plugin-google-analytics`,
+      resolve: 'gatsby-plugin-i18n',
       options: {
-        trackingId: `UA-98124033-1`
+        langKeyForNull: 'any',
+        langKeyDefault: languages.defaultLangKey,
+        useLangKeyLayout: true
       }
     },
-    `gatsby-plugin-offline`
-  ]
+    {
+      resolve: `gatsby-source-contentful`,
+      options: {
+        spaceId: `rocybtov1ozk`,
+        accessToken: `6f35edf0db39085e9b9c19bd92943e4519c77e72c852d961968665f1324bfc94`,
+      },
+    },
+    `gatsby-transformer-remark`,
+  ],
 }

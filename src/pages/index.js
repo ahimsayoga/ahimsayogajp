@@ -1,42 +1,44 @@
-import React from "react"
-import styled from "styled-components"
+import React from 'react';
+import graphql from 'graphql';
+import { getUserLangKey } from 'ptz-i18n';
+import { withPrefix } from "gatsby-link";
 
-// Create a Title component that'll render an <h1> tag with some styles
-const Title = styled.h1`
-  font-size: 1.5em;
-  text-align: center;
-  color: palevioletred;
-`
+class RedirectIndex extends React.PureComponent {
+  constructor(args) {
+    super(args);
 
-// Create a Wrapper component that'll render a <section> tag with some styles
-const Wrapper = styled.section`
-  padding: 4em;
-  background: papayawhip;
-`
+    // Skip build, Browsers only
+    if (typeof window !== 'undefined') {
+      const { langs, defaultLangKey } = args.data.site.siteMetadata.languages;
+      const langKey = getUserLangKey(langs, defaultLangKey);
+      const homeUrl = withPrefix(`/${langKey}/`);
 
-class IndexPage extends React.Component {
+      // I don`t think this is the best solution
+      // I would like to use Gatsby Redirects like:
+      // https://github.com/gatsbyjs/gatsby/tree/master/examples/using-redirects
+      // But Gatsby Redirects are static, they need to be specified at build time,
+      // This redirect is dynamic, It needs to know the user browser language.
+      // Any ideias? Join the issue: https://github.com/angeloocana/gatsby-starter-default-i18n/issues/4
+      window.___history.replace(homeUrl);
+    }
+  }
+
   render() {
-    return (
-      <div
-        style={{
-          margin: `0 auto`,
-          marginTop: `3rem`,
-          padding: `1.5rem`,
-          maxWidth: 800,
-          color: `red`,
-        }}
-      >
-        <Wrapper>
-          <Title>Hello World, this is my first styled component!</Title>
-          <p>
-            <a href="https://www.gatsbyjs.org/packages/gatsby-plugin-styled-components/">
-              gatsby-plugin-styled-component docs
-            </a>
-          </p>
-        </Wrapper>
-      </div>
-    )
+    return (<div />);
   }
 }
 
-export default IndexPage
+export default RedirectIndex;
+
+export const pageQuery = graphql`
+  query IndexQuery {
+    site{
+      siteMetadata{
+        languages {
+          defaultLangKey
+          langs
+        }
+      }
+    }
+  }
+`;
