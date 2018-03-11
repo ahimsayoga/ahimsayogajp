@@ -8,8 +8,8 @@ import { rhythm } from "../utils/typography"
 import Link from "gatsby-link"
 import 'intl';
 
-import messagesEn from '../data/messages/en-US';
-import messagesDe from '../data/messages/de';
+import messagesEn from '../data/messages/en';
+import messagesJa from '../data/messages/ja';
 
 const TemplateWrapper = ({ children, data, location, i18nMessages }) => {
   const url = location.pathname;
@@ -20,8 +20,8 @@ const TemplateWrapper = ({ children, data, location, i18nMessages }) => {
 
   // Hack for using products / categories template when params not passed to wrapper.
   if (i18nMessages === undefined) {
-    if (langKey === 'de') {
-      i18nMessages = messagesDe
+    if (langKey === 'ja') {
+      i18nMessages = messagesJa
     } else {
       i18nMessages = messagesEn
     }
