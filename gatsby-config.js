@@ -1,8 +1,10 @@
-const languages = require('./src/data/languages');
+require('dotenv').config()
+
+const languages = require('./src/data/languages')
 
 module.exports = {
   siteMetadata: {
-    title: `Gatsby with Contentful`,
+    title: `Ahimsa Yoga`,
     languages
   },
   plugins: [
@@ -18,10 +20,30 @@ module.exports = {
     {
       resolve: `gatsby-source-contentful`,
       options: {
-        spaceId: `rocybtov1ozk`,
-        accessToken: `6f35edf0db39085e9b9c19bd92943e4519c77e72c852d961968665f1324bfc94`,
-      },
+        spaceId: process.env.CONTENTFUL_SPACE_ID || '',
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN || ''
+      }
     },
     `gatsby-transformer-remark`,
-  ],
+    `gatsby-plugin-styled-components`,
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: `UA-98124033-1`
+      }
+    },
+    `gatsby-plugin-offline`,
+    {
+      resolve: `gatsby-plugin-netlify`,
+      options: {
+        headers: {}, // option to add more headers. `Link` headers are transformed by the below criteria
+        allPageHeaders: [], // option to add headers for all pages. `Link` headers are transformed by the below criteria
+        mergeSecurityHeaders: true, // boolean to turn off the default security headers
+        mergeLinkHeaders: true, // boolean to turn off the default gatsby js headers
+        mergeCachingHeaders: true, // boolean to turn off the default caching headers
+        transformHeaders: (headers, path) => headers, // optional transform for manipulating headers under each path (e.g.sorting), etc.
+        generateMatchPathRewrites: true // boolean to turn off automatic creation of redirect rules for client only paths
+      }
+    }
+  ]
 }
