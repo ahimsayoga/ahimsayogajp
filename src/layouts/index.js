@@ -40,7 +40,7 @@ const TemplateWrapper = ({ children, data, location, i18nMessages }) => {
             { name: 'keywords', content: 'sample, something' }
           ]}
         />
-        <Header langs={langsMenu} />
+        <Header langs={langsMenu} locale={langKey} />
         <div
           style={{
             margin: `0 auto`,

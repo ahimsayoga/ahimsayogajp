@@ -1,6 +1,8 @@
 import React from 'react'
 import Link from 'gatsby-link'
+import PropTypes from 'prop-types'
 import SelectLanguage from './SelectLanguage'
+import MainMenu from './MainMenu'
 
 const Header = (props) => (
   <div
@@ -28,8 +30,14 @@ const Header = (props) => (
         </Link>
       </h1>
       <SelectLanguage langs={props.langs} />
+      <MainMenu locale={props.locale} />
     </div>
   </div>
 )
+
+Header.propTypes = {
+  langs: PropTypes.array,
+  locale: PropTypes.string
+}
 
 export default Header
