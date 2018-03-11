@@ -1,9 +1,8 @@
 import React from 'react'
 import Link from 'gatsby-link'
+import SelectLanguage from './SelectLanguage';
 
-import Nav from './Nav'
-
-const Header = () => (
+const Header = (props) => (
   <div
     style={{
       background: 'rebeccapurple',
@@ -27,10 +26,10 @@ const Header = () => (
         >
           Gatsby
         </Link>
-        <Nav />
       </h1>
+      <SelectLanguage langs={props.langs} />
     </div>
   </div>
 )
 
-export default Header
+export default Header;

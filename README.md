@@ -1,13 +1,7 @@
-# gatsby-starter-default
-The default Gatsby starter
+# Using Contentful with i18n plugin
 
-For an overview of the project structure please refer to the [Gatsby documentation - Building with Components](https://www.gatsbyjs.org/docs/building-with-components/)
+To build on the [Using Contentful](https://github.com/gatsbyjs/gatsby/tree/master/examples/using-contentful) example site using the [i18n community plugin](https://github.com/angeloocana/gatsby-plugin-i18n), this starter repo shows a language switcher and the bilingual content only for the selected language (codes en-US and de).
 
-Install this starter (assuming Gatsby is installed) by running from your CLI:
-```
-gatsby new gatsby-example-site
-```
+Please take a look at the [issue queue](https://github.com/mccrodp/gatsby-contentful-i18n) to help out and feel free to submit PRs :)
 
-## Deploy
-
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/gatsbyjs/gatsby-starter-default)
+See [DEMO](https://gatsby-starter-contentful-i18n.netlify.com/).
