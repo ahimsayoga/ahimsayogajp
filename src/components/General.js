@@ -3,7 +3,7 @@ import Link from 'gatsby-link'
 import * as PropTypes from 'prop-types'
 
 const propTypes = {
-  data: PropTypes.object.isRequired
+  node: PropTypes.object.isRequired
 }
 
 const General = ({ node }) => (
