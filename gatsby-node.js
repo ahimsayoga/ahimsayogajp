@@ -32,13 +32,11 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
         }
         // Create pages for each markdown file.
         _.each(result.data.allContentfulGeneral.edges, edge => {
-          console.log(edge)
           let slug = `/${edge.node.node_locale}/${edge.node.slug}`
           // Overrite slug for the homepage.
           if (edge.node.slug === '<front>') {
             slug = `/${edge.node.node_locale}/`
           }
-          console.log(slug)
           createPage({
             path: slug,
             component: slash(GeneralTemplate),
