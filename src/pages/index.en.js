@@ -1,13 +1,51 @@
 import React from 'react'
-import Link from 'gatsby-link'
+import General from '../components/General'
 
-const IndexPage = () => (
-  <div>
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <Link to="/en/page-2/">Go to page 2</Link>
-  </div>
-)
+class IndexEnPage extends React.PureComponent {
+  render () {
+    const enGeneralEdges = this.props.data.en.edges
+    return (
+      <div>
+        <h2>Home</h2>
+        <p>
+          Add text about Shivam Yoga.
+        </p>
+        <br />
+        <br />
+        <h3>en - General Pages</h3>
+        {enGeneralEdges.map(({ node }, i) => (
+          <General node={node} key={node.id} />
+        ))}
+        <br />
+      </div>
+    )
+  }
+}
 
-export default IndexPage
+export default IndexEnPage
+
+export const pageEnQuery = graphql`
+query PageEnQuery {
+  en: allContentfulGeneral(filter: { node_locale: { eq: "en" } }) {
+    edges {
+      node {
+        id
+        node_locale
+        title
+        slug
+        body {
+          body
+        }
+      }
+    }
+  }
+  site{
+    siteMetadata{
+      languages {
+        defaultLangKey
+        langs
+      }
+    }
+  }
+}
+`
