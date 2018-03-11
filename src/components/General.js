@@ -1,6 +1,7 @@
 import React from 'react'
 import Link from 'gatsby-link'
 import * as PropTypes from 'prop-types'
+import {pathFromSlug} from '../utils/pathFromSlug'
 
 const propTypes = {
   node: PropTypes.object.isRequired
@@ -10,7 +11,7 @@ const General = ({ node }) => (
   <div>
     <Link
       style={{ color: `inherit`, textDecoration: `none` }}
-      to={`/${node.node_locale}/${node.slug}/`}
+      to={pathFromSlug(node.node_locale, node.slug)}
     >
       <div
         style={{
