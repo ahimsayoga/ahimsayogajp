@@ -13,7 +13,6 @@
     "gatsby-plugin-offline": "latest",
     "gatsby-source-contentful": "latest",
     "gatsby-transformer-remark": "latest",
-    "gatsby-plugin-netlify": "^1.0.17",
     "gatsby-module-loader": "latest",
     "gatsby-plugin-styled-components": "latest",
     "gatsby-plugin-react-helmet": "^1.0.5",
