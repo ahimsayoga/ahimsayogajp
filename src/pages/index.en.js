@@ -1,4 +1,5 @@
 import React from 'react'
+
 import General from '../components/General'
 
 class IndexEnPage extends React.PureComponent {

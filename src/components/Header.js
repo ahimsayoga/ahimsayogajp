@@ -1,23 +1,26 @@
 import React from 'react'
 import Link from 'gatsby-link'
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
+
 import SelectLanguage from './SelectLanguage'
 import MainMenu from './MainMenu'
 
+// Create a Wrapper component that'll render a <div> tag with some styles
+const HeaderWrapper = styled.div`
+  background: rebeccapurple;
+  margin-bottom: 1.45rem;
+`
+
+const HeaderInner = styled.div`
+  margin: 0 auto;
+  max-width: 960px;
+  padding: 1.45rem 1.0875rem;
+`
+
 const Header = (props) => (
-  <div
-    style={{
-      background: 'rebeccapurple',
-      marginBottom: '1.45rem'
-    }}
-  >
-    <div
-      style={{
-        margin: '0 auto',
-        maxWidth: 960,
-        padding: '1.45rem 1.0875rem'
-      }}
-    >
+  <HeaderWrapper>
+    <HeaderInner>
       <h1 style={{ margin: 0 }}>
         <Link
           to='/'
@@ -31,8 +34,8 @@ const Header = (props) => (
       </h1>
       <SelectLanguage langs={props.langs} />
       <MainMenu locale={props.locale} />
-    </div>
-  </div>
+    </HeaderInner>
+  </HeaderWrapper>
 )
 
 Header.propTypes = {
