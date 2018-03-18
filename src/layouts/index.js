@@ -3,29 +3,30 @@ import PropTypes from 'prop-types'
 import Header from '../components/Header'
 import Helmet from 'react-helmet'
 import { getCurrentLangKey, getLangs, getUrlForLang } from 'ptz-i18n'
-import { IntlProvider } from 'react-intl'
+import { IntlProvider, addLocaleData } from 'react-intl'
 import { rhythm } from '../utils/typography'
 import Link from 'gatsby-link'
 import 'intl'
 
-import messagesEn from '../data/messages/en'
-import messagesJa from '../data/messages/ja'
+import en from 'react-intl/locale-data/en'
+import 'intl/locale-data/jsonp/en'
+import ja from 'react-intl/locale-data/ja'
+import 'intl/locale-data/jsonp/ja'
 
-const TemplateWrapper = ({ children, data, location, i18nMessages }) => {
+// add concatenated locale data
+addLocaleData([...en, ...ja])
+
+const TemplateWrapper = ({ children, data, location }) => {
   const url = location.pathname
   const { langs, defaultLangKey } = data.site.siteMetadata.languages
   const langKey = getCurrentLangKey(langs, defaultLangKey, url)
   const homeLink = `/${langKey}/`
   const langsMenu = getLangs(langs, langKey, getUrlForLang(homeLink, url))
 
-  // Hack for using products / categories template when params not passed to wrapper.
-  if (i18nMessages === undefined) {
-    if (langKey === 'ja') {
-      i18nMessages = messagesJa
-    } else {
-      i18nMessages = messagesEn
-    }
-  }
+  // get the appropriate message file based on langKey
+  // at the moment this assumes that langKey will provide us
+  // with the appropriate language code
+  const i18nMessages = require(`../data/messages/${langKey}`)
 
   return (
     <IntlProvider
