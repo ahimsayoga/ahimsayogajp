@@ -8,7 +8,6 @@ module.exports = {
     languages
   },
   plugins: [
-    `gatsby-plugin-react-helmet`,
     {
       resolve: 'gatsby-plugin-i18n',
       options: {
