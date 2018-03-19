@@ -1,3 +1,3 @@
 module.exports = {
-  'selectLanguage': 'Japanese select lang'
+  'selectLanguage': '言語'
 }

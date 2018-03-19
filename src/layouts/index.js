@@ -20,7 +20,7 @@ const ContentWrapper = styled.section`
   margin-top: ${rhythm(1.5)};
   margin-bottom: ${rhythm(1.5)};
   padding-left: ${rhythm(3 / 4)};
-  padding-right: ${rhythm(3 / 4)}
+  padding-right: ${rhythm(3 / 4)};
 `
 
 // add concatenated locale data
