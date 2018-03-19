@@ -1,10 +1,10 @@
 require('dotenv').config()
 
-const languages = require('./src/data/languages');
+const languages = require('./src/data/languages')
 
 module.exports = {
   siteMetadata: {
-    title: `Gatsby with Contentful`,
+    title: `Ahimsa Yoga`,
     languages
   },
   plugins: [
@@ -26,5 +26,5 @@ module.exports = {
     },
     `gatsby-transformer-remark`,
     `gatsby-plugin-styled-components`
-  ],
+  ]
 }
