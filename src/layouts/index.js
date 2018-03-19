@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import Helmet from 'react-helmet'
 import { getCurrentLangKey, getLangs, getUrlForLang } from 'ptz-i18n'
 import { IntlProvider, addLocaleData } from 'react-intl'
 import styled from 'styled-components'
@@ -43,6 +44,13 @@ const TemplateWrapper = ({ children, data, location }) => {
       messages={i18nMessages}
     >
       <div>
+        <Helmet
+          title='Ahimsa Yoga Website'
+          meta={[
+            { name: 'description', content: 'Sample' },
+            { name: 'keywords', content: 'sample, something' }
+          ]}
+        />
         <Header langs={langsMenu} locale={langKey} />
         <ContentWrapper>
           {children()}

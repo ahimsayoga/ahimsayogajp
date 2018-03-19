@@ -1,6 +1,6 @@
 require('dotenv').config()
 
-const languages = require('./src/data/languages')
+const languages = require('./src/data/languages');
 
 module.exports = {
   siteMetadata: {
