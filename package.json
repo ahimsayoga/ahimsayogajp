@@ -23,7 +23,8 @@
     "gatsby-plugin-react-helmet": "^1.0.5",
     "intl": "^1.2.5",
     "react-intl": "^2.4.0",
-    "styled-components": "^2.2.3"
+    "styled-components": "^2.2.3",
+    "react-helmet": "latest"
   },
   "devDependencies": {
     "dotenv": "^5.0.0",
