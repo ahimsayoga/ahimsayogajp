@@ -7,15 +7,15 @@ class IndexJaPage extends React.PureComponent {
     const jaGeneralEdges = this.props.data.ja.edges
     return (
       <div>
-        <h2>Home</h2>
-        <p>
-          Add text about Shivam Yoga.
-        </p>
-        <br />
-        <br />
-        <h3>ja - General Pages</h3>
         {jaGeneralEdges.map(({ node }, i) => (
-          <General node={node} key={node.id} />
+          <div>
+            <h2>{node.title}</h2>
+            <div
+              dangerouslySetInnerHTML={{
+                __html: node.body.childMarkdownRemark.html
+              }}
+            />
+          </div>
         ))}
         <br />
       </div>
@@ -27,7 +27,7 @@ export default IndexJaPage
 
 export const pageJaQuery = graphql`
 query PageJaQuery {
-  ja: allContentfulGeneral(filter: { node_locale: { eq: "ja" } }) {
+  ja: allContentfulGeneral(filter: { slug: { eq: "<front>" }, node_locale: { eq: "ja" } }) {
     edges {
       node {
         id
@@ -35,7 +35,9 @@ query PageJaQuery {
         title
         slug
         body {
-          body
+          childMarkdownRemark {
+            html
+          }
         }
       }
     }
