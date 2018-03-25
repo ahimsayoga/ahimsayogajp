@@ -1,21 +1,19 @@
 import React from 'react'
 
-import General from '../components/General'
-
 class IndexEnPage extends React.PureComponent {
   render () {
     const enGeneralEdges = this.props.data.en.edges
     return (
       <div>
-        <h2>Home</h2>
-        <p>
-          Add text about Shivam Yoga.
-        </p>
-        <br />
-        <br />
-        <h3>en - General Pages</h3>
         {enGeneralEdges.map(({ node }, i) => (
-          <General node={node} key={node.id} />
+          <div>
+            <h2>{node.title}</h2>
+            <div
+              dangerouslySetInnerHTML={{
+                __html: node.body.childMarkdownRemark.html
+              }}
+            />
+          </div>
         ))}
         <br />
       </div>
@@ -27,7 +25,7 @@ export default IndexEnPage
 
 export const pageEnQuery = graphql`
 query PageEnQuery {
-  en: allContentfulGeneral(filter: { node_locale: { eq: "en" } }) {
+  en: allContentfulGeneral(filter: { slug: { eq: "<front>" }, node_locale: { eq: "en" } }) {
     edges {
       node {
         id
@@ -35,7 +33,9 @@ query PageEnQuery {
         title
         slug
         body {
-          body
+          childMarkdownRemark {
+            html
+          }
         }
       }
     }
