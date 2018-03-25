@@ -7,6 +7,7 @@ import styled from 'styled-components'
 import 'intl'
 
 import Header from '../components/Header'
+import Footer from '../components/Footer'
 import { rhythm } from '../utils/typography'
 import en from 'react-intl/locale-data/en'
 import 'intl/locale-data/jsonp/en'
@@ -55,6 +56,7 @@ const TemplateWrapper = ({ children, data, location }) => {
         <ContentWrapper>
           {children()}
         </ContentWrapper>
+        <Footer langs={langsMenu} locale={langKey} />
       </div>
     </IntlProvider>
   )
