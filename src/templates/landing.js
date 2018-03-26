@@ -1,8 +1,8 @@
 import React from 'react'
 
-class GeneralTemplate extends React.Component {
+class LandingTemplate extends React.Component {
   render () {
-    const page = this.props.data.contentfulGeneral
+    const page = this.props.data.contentfulLanding
 
     return (
       <div>
@@ -17,11 +17,11 @@ class GeneralTemplate extends React.Component {
   }
 }
 
-export default GeneralTemplate
+export default LandingTemplate
 
 export const pageQuery = graphql`
-query generalQuery($id: String!) {
-  contentfulGeneral(id: { eq: $id }) {
+query landingQuery($id: String!) {
+  contentfulLanding(id: { eq: $id }) {
     title,
     body {
       childMarkdownRemark {

@@ -2,10 +2,10 @@ import React from 'react'
 
 class IndexEnPage extends React.PureComponent {
   render () {
-    const enGeneralEdges = this.props.data.en.edges
+    const enLandingEdges = this.props.data.en.edges
     return (
       <div>
-        {enGeneralEdges.map(({ node }, i) => (
+        {enLandingEdges.map(({ node }, i) => (
           <div>
             <h2>{node.title}</h2>
             <div
@@ -25,7 +25,7 @@ export default IndexEnPage
 
 export const pageEnQuery = graphql`
 query PageEnQuery {
-  en: allContentfulGeneral(filter: { slug: { eq: "<front>" }, node_locale: { eq: "en" } }) {
+  en: allContentfulLanding(filter: { slug: { eq: "<front>" }, node_locale: { eq: "en" } }) {
     edges {
       node {
         id
