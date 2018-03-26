@@ -1,5 +1,7 @@
 import React from 'react'
 
+import TextWrapper from '../components/TextWrapper'
+
 class LandingTemplate extends React.Component {
   render () {
     const page = this.props.data.contentfulLanding
@@ -13,6 +15,19 @@ class LandingTemplate extends React.Component {
             __html: page.body.childMarkdownRemark.html
           }}
         />
+          {
+            page.components.forEach((element) =>
+              <div>
+                <TextWrapper body={element.body} />
+              </div>
+            // console.log(element.body.childMarkdownRemark.html)
+              // <div
+              //   dangerouslySetInnerHTML={{
+              //     __html: element.body.childMarkdownRemark.html
+              //   }}
+              // />
+            )
+          }
       </div>
     )
   }
@@ -30,7 +45,15 @@ query landingQuery($id: String!) {
       }
     },
     components {
-      id
+      parent {
+        id
+      }
+      body {
+        id
+        childMarkdownRemark {
+          html
+        }
+      }
     }
   }
 }
