@@ -3,10 +3,11 @@ import React from 'react'
 class IndexEnPage extends React.PureComponent {
   render () {
     const enLandingEdges = this.props.data.en.edges
+    console.log(enLandingEdges)
     return (
       <div>
         {enLandingEdges.map(({ node }, i) => (
-          <div>
+          <div key={node.id}>
             <h2>{node.title}</h2>
             <div
               dangerouslySetInnerHTML={{
@@ -36,6 +37,9 @@ query PageEnQuery {
           childMarkdownRemark {
             html
           }
+        },
+        components {
+          id
         }
       }
     }

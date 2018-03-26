@@ -3,10 +3,11 @@ import React from 'react'
 class IndexJaPage extends React.PureComponent {
   render () {
     const jaLandingEdges = this.props.data.ja.edges
+    console.log(jaLandingEdges)
     return (
       <div>
         {jaLandingEdges.map(({ node }, i) => (
-          <div>
+          <div key={node.id}>
             <h2>{node.title}</h2>
             <div
               dangerouslySetInnerHTML={{
@@ -36,6 +37,9 @@ query PageJaQuery {
           childMarkdownRemark {
             html
           }
+        },
+        components {
+          id
         }
       }
     }

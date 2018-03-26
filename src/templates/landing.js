@@ -4,6 +4,7 @@ class LandingTemplate extends React.Component {
   render () {
     const page = this.props.data.contentfulLanding
 
+    console.log(page)
     return (
       <div>
         <h1>{page.title}</h1>
@@ -27,6 +28,9 @@ query landingQuery($id: String!) {
       childMarkdownRemark {
         html
       }
+    },
+    components {
+      id
     }
   }
 }
