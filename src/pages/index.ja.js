@@ -11,11 +11,6 @@ class IndexJaPage extends React.PureComponent {
         {page.map(({ node }, i) => (
           <div key={node.id}>
             <h2>{node.title}</h2>
-            <div
-              dangerouslySetInnerHTML={{
-                __html: node.body.childMarkdownRemark.html
-              }}
-            />
             {console.log(node) }
             {
               node.components.map(( element ) => {
@@ -46,11 +41,6 @@ query PageJaQuery {
         node_locale
         title
         slug
-        body {
-          childMarkdownRemark {
-            html
-          }
-        },
         components {
           id
           parent {

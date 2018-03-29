@@ -10,11 +10,6 @@ class LandingTemplate extends React.Component {
     return (
       <div>
         <h1>{page.title}</h1>
-        <div
-          dangerouslySetInnerHTML={{
-            __html: page.body.childMarkdownRemark.html
-          }}
-        />
           {
             page.components.map(( element ) => {
               const componentName = element.parent.id;
@@ -35,12 +30,7 @@ export default LandingTemplate
 export const pageQuery = graphql`
 query landingQuery($id: String!) {
   contentfulLanding(id: { eq: $id }) {
-    title,
-    body {
-      childMarkdownRemark {
-        html
-      }
-    },
+    title
     components {
       id
       parent {

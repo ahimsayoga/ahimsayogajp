@@ -10,11 +10,6 @@ class IndexEnPage extends React.PureComponent {
         {page.map(({ node }, i) => (
           <div key={node.id}>
             <h2>{node.title}</h2>
-            <div
-              dangerouslySetInnerHTML={{
-                __html: node.body.childMarkdownRemark.html
-              }}
-            />
             {
               node.components.map(( element ) => {
                 const componentName = element.parent.id;
@@ -44,11 +39,6 @@ query PageEnQuery {
         node_locale
         title
         slug
-        body {
-          childMarkdownRemark {
-            html
-          }
-        },
         components {
           id
           parent {
