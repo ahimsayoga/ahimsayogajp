@@ -1,12 +1,14 @@
 import React from 'react'
 
+import * as contentfulWrapper from '../components/ContentfulWrapper'
+
 class IndexJaPage extends React.PureComponent {
   render () {
-    const jaLandingEdges = this.props.data.ja.edges
-    console.log(jaLandingEdges)
+    const page = this.props.data.ja.edges
+    console.log(page)
     return (
       <div>
-        {jaLandingEdges.map(({ node }, i) => (
+        {page.map(({ node }, i) => (
           <div key={node.id}>
             <h2>{node.title}</h2>
             <div
@@ -14,6 +16,17 @@ class IndexJaPage extends React.PureComponent {
                 __html: node.body.childMarkdownRemark.html
               }}
             />
+            {console.log(node) }
+            {
+              node.components.map(( element ) => {
+                const componentName = element.parent.id;
+                const ContentfulWrapper = contentfulWrapper[componentName];
+
+                return (
+                  <ContentfulWrapper key={element.id} component={element} />
+                );
+              })
+            }
           </div>
         ))}
         <br />
@@ -40,6 +53,15 @@ query PageJaQuery {
         },
         components {
           id
+          parent {
+            id
+          }
+          body {
+            id
+            childMarkdownRemark {
+              html
+            }
+          }
         }
       }
     }

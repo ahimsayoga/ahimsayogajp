@@ -1,12 +1,13 @@
 import React from 'react'
 
+import * as contentfulWrapper from '../components/ContentfulWrapper'
+
 class IndexEnPage extends React.PureComponent {
   render () {
-    const enLandingEdges = this.props.data.en.edges
-    // console.log(enLandingEdges)
+    const page = this.props.data.en.edges
     return (
       <div>
-        {enLandingEdges.map(({ node }, i) => (
+        {page.map(({ node }, i) => (
           <div key={node.id}>
             <h2>{node.title}</h2>
             <div
@@ -14,6 +15,16 @@ class IndexEnPage extends React.PureComponent {
                 __html: node.body.childMarkdownRemark.html
               }}
             />
+            {
+              node.components.map(( element ) => {
+                const componentName = element.parent.id;
+                const ContentfulWrapper = contentfulWrapper[componentName];
+
+                return (
+                  <ContentfulWrapper key={element.id} component={element} />
+                );
+              })
+            }
           </div>
         ))}
         <br />
@@ -40,6 +51,15 @@ query PageEnQuery {
         },
         components {
           id
+          parent {
+            id
+          }
+          body {
+            id
+            childMarkdownRemark {
+              html
+            }
+          }
         }
       }
     }
