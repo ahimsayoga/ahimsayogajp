@@ -9,13 +9,13 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
   const { createPage } = boundActionCreators
 
   return new Promise((resolve, reject) => {
-    const GeneralTemplate = path.resolve(`./src/templates/general.js`)
+    const LandingTemplate = path.resolve(`./src/templates/landing.js`)
     // Query for markdown nodes to use in creating pages.
     resolve(
       graphql(
         `
         {
-          allContentfulGeneral(limit: 1000) {
+          allContentfulLanding(limit: 1000) {
             edges {
               node {
                 id
@@ -31,7 +31,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
           reject(result.errors)
         }
         // Create pages for each markdown file.
-        _.each(result.data.allContentfulGeneral.edges, edge => {
+        _.each(result.data.allContentfulLanding.edges, edge => {
           let slug = `/${edge.node.node_locale}/${edge.node.slug}`
           // Overwrite slug for the homepage.
           if (edge.node.slug === '<front>') {
@@ -39,7 +39,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
           }
           createPage({
             path: slug,
-            component: slash(GeneralTemplate),
+            component: slash(LandingTemplate),
             // In your blog post template's graphql query, you can use path
             // as a GraphQL variable to query for data from the markdown file.
             context: {
