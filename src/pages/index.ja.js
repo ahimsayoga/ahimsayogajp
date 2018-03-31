@@ -14,7 +14,7 @@ class IndexJaPage extends React.PureComponent {
             {console.log(node) }
             {
               node.components.map(( element ) => {
-                const componentName = element.parent.id;
+                const componentName = element.parent.id + 'Wrapper';
                 const ContentfulWrapper = contentfulWrapper[componentName];
 
                 return (
