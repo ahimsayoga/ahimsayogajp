@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const TextComponent = (props) => (
+const TextWrapper = (props) => (
   <div>
     <div
       dangerouslySetInnerHTML={{
@@ -11,8 +11,8 @@ const TextComponent = (props) => (
   </div>
 )
 
-TextComponent.propTypes = {
+TextWrapper.propTypes = {
   body: PropTypes.object
 }
 
-export { TextComponent }
+export { TextWrapper }

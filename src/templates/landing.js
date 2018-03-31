@@ -5,14 +5,13 @@ import * as contentfulWrapper from '../components/ContentfulWrapper'
 class LandingTemplate extends React.Component {
   render () {
     const page = this.props.data.contentfulLanding
-    console.log(page)
 
     return (
       <div>
         <h1>{page.title}</h1>
           {
             page.components.map(( element ) => {
-              const componentName = element.parent.id;
+              const componentName = element.parent.id + 'Wrapper';
               const ContentfulWrapper = contentfulWrapper[componentName];
 
               return (
