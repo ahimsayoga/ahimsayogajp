@@ -42,14 +42,31 @@ query PageJaQuery {
         title
         slug
         components {
-          id
-          parent {
+          ... on ContentfulText {
             id
+            parent {
+              id
+            }
+            body {
+              childMarkdownRemark {
+                html
+              }
+            }
           }
-          body {
+          ... on ContentfulHero {
             id
-            childMarkdownRemark {
-              html
+            parent {
+              id
+            }
+            body {
+              childMarkdownRemark {
+                html
+              }
+            }
+            media {
+              file {
+                url
+              }
             }
           }
         }
