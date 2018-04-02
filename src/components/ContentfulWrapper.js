@@ -15,4 +15,18 @@ TextWrapper.propTypes = {
   body: PropTypes.object
 }
 
-export { TextWrapper }
+const HeroWrapper = (props) => (
+  <div>
+    <div
+      dangerouslySetInnerHTML={{
+        __html: props.component.body.childMarkdownRemark.html
+      }}
+    />
+  </div>
+)
+
+HeroWrapper.propTypes = {
+  body: PropTypes.object
+}
+
+export { TextWrapper, HeroWrapper }
