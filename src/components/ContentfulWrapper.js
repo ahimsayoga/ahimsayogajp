@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import Img from 'gatsby-image'
 
 const TextWrapper = (props) => (
   <div>
@@ -17,11 +18,13 @@ TextWrapper.propTypes = {
 
 const HeroWrapper = (props) => (
   <div>
+    {console.log(props)}
     <div
       dangerouslySetInnerHTML={{
         __html: props.component.body.childMarkdownRemark.html
       }}
     />
+    <Img resolutions={props.component.media.resolutions} />
   </div>
 )
 
