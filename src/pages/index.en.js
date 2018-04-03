@@ -61,8 +61,15 @@ query PageEnQuery {
               }
             }
             media {
-              file {
-                url
+              resolutions {
+                base64
+                aspectRatio
+                width
+                height
+                src
+                srcSet
+                srcWebp
+                srcSetWebp
               }
             }
           }
