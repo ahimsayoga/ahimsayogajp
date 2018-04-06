@@ -18,7 +18,6 @@ TextWrapper.propTypes = {
 
 const HeroWrapper = (props) => (
   <div>
-    {console.log(props)}
     <div
       dangerouslySetInnerHTML={{
         __html: props.component.body.childMarkdownRemark.html
@@ -32,4 +31,24 @@ HeroWrapper.propTypes = {
   body: PropTypes.object
 }
 
-export { TextWrapper, HeroWrapper }
+const ScheduleWrapper = (props) => {
+  return (
+    <div>
+      {console.log(props)}
+      {props.component.items.map(( item ) => (
+        <div key={item.id}>
+          <h2>{item.title}{console.log(item)}</h2>
+          <div>{item.day}</div>
+          <div>{item.time}</div>
+          <div>{item.location.location.lat} / {item.location.location.lon}</div>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+// ScheduleWrapper.propTypes = {
+//   body: PropTypes.object
+// }
+
+export { TextWrapper, HeroWrapper, ScheduleWrapper }
