@@ -65,6 +65,26 @@ query landingQuery($id: String!) {
           }
         }
       }
+      ... on ContentfulSchedule {
+        id
+        parent {
+          id
+        }
+        heading
+        items {
+          id
+          title
+          day
+          time
+          location {
+            id
+            location {
+              lon
+              lat
+            }
+          }
+        }
+      }
     }
   }
 }
