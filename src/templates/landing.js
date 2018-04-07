@@ -78,10 +78,7 @@ query landingQuery($id: String!) {
           time
           location {
             id
-            location {
-              lon
-              lat
-            }
+            slug
           }
         }
       }

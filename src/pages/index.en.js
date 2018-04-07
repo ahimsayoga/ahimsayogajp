@@ -86,10 +86,7 @@ query PageEnQuery {
               time
               location {
                 id
-                location {
-                  lon
-                  lat
-                }
+                slug
               }
             }
           }
