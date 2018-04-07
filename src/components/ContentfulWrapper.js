@@ -12,10 +12,6 @@ const TextWrapper = (props) => (
   </div>
 )
 
-TextWrapper.propTypes = {
-  component: PropTypes.object
-}
-
 const HeroWrapper = (props) => (
   <div>
     <div
@@ -27,14 +23,10 @@ const HeroWrapper = (props) => (
   </div>
 )
 
-HeroWrapper.propTypes = {
-  component: PropTypes.object
-}
-
 const ScheduleWrapper = (props) => {
   return (
     <div>
-      {console.log(props)}
+      {/* {console.log(props)} */}
       {props.component.items.map(( item ) => (
         <div key={item.id}>
           <h2>{item.title}{console.log(item)}</h2>
@@ -47,8 +39,19 @@ const ScheduleWrapper = (props) => {
   )
 }
 
-ScheduleWrapper.propTypes = {
+const LocationWrapper = (props) => {
+  return (
+    <div>
+      {/* {console.log(props.component.location)} */}
+      <h2>{props.component.heading}</h2>
+      <div>Lat: {props.component.location.lat}</div>
+      <div>Lon: {props.component.location.lon}</div>
+    </div>
+  )
+}
+
+TextWrapper.propTypes = HeroWrapper.propTypes = ScheduleWrapper.propTypes = LocationWrapper.propTypes = {
   component: PropTypes.object
 }
 
-export { TextWrapper, HeroWrapper, ScheduleWrapper }
+export { TextWrapper, HeroWrapper, ScheduleWrapper, LocationWrapper }
