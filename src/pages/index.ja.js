@@ -89,10 +89,7 @@ query PageJaQuery {
               time
               location {
                 id
-                location {
-                  lon
-                  lat
-                }
+                slug
               }
             }
           }
