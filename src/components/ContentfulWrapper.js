@@ -29,12 +29,27 @@ const ScheduleWrapper = (props) => {
       {/* {console.log(props)} */}
       {props.component.items.map(( item ) => (
         <div key={item.id}>
-          <h2>{item.title}{console.log(item)}</h2>
+          <h2>{item.title}</h2>
           <div>Day: {item.day}</div>
           <div>Time: {item.time}</div>
           <div>Slug: {item.location.slug}</div>
         </div>
       ))}
+    </div>
+  )
+}
+
+const CostWrapper = (props) => {
+  return (
+    <div>
+      {/* {console.log(props.component)} */}
+      <h2>{props.component.heading}</h2>
+      <div>Price: {props.component.price}</div>
+      <div
+        dangerouslySetInnerHTML={{
+          __html: props.component.body.childMarkdownRemark.html
+        }}
+      />
     </div>
   )
 }
@@ -50,8 +65,8 @@ const LocationWrapper = (props) => {
   )
 }
 
-TextWrapper.propTypes = HeroWrapper.propTypes = ScheduleWrapper.propTypes = LocationWrapper.propTypes = {
+TextWrapper.propTypes = HeroWrapper.propTypes = ScheduleWrapper.propTypes = CostWrapper.propTypes = LocationWrapper.propTypes = {
   component: PropTypes.object
 }
 
-export { TextWrapper, HeroWrapper, ScheduleWrapper, LocationWrapper }
+export { TextWrapper, HeroWrapper, ScheduleWrapper, CostWrapper, LocationWrapper }
