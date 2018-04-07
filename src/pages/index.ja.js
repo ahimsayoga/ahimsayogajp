@@ -93,6 +93,17 @@ query PageJaQuery {
               }
             }
           }
+          ... on ContentfulLocation {
+            id
+            parent {
+              id
+            }
+            heading
+            location {
+              lon
+              lat
+            }
+          }
         }
       }
     }
