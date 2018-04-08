@@ -110,15 +110,19 @@ query PageJaQuery {
               }
             }
           }
-          ... on ContentfulLocation {
+          ... on ContentfulLocationCollection {
             id
             parent {
               id
             }
             heading
-            location {
-              lon
-              lat
+            components {
+              id
+              heading
+              location {
+                lon
+                lat
+              }
             }
           }
         }
