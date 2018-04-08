@@ -93,16 +93,20 @@ query PageJaQuery {
               }
             }
           }
-          ... on ContentfulCost {
+          ... on ContentfulCostCollection {
             id
             parent {
               id
             }
             heading
-            price
-  					body {
-              childMarkdownRemark {
-                html
+            components {
+              id
+              heading
+              price
+              body {
+                childMarkdownRemark {
+                  html
+                }
               }
             }
           }

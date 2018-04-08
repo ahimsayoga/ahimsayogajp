@@ -26,7 +26,6 @@ const HeroWrapper = (props) => (
 const ScheduleWrapper = (props) => {
   return (
     <div>
-      {/* {console.log(props)} */}
       {props.component.items.map(( item ) => (
         <div key={item.id}>
           <h2>{item.title}</h2>
@@ -39,10 +38,24 @@ const ScheduleWrapper = (props) => {
   )
 }
 
+const CostCollectionWrapper = (props) => {
+  return (
+    <div>
+      <h2>{props.component.heading}</h2>
+      <div>
+        {props.component.components.map(( component ) => (
+          <div key={component.id}>
+            <CostWrapper component={component} />
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 const CostWrapper = (props) => {
   return (
     <div>
-      {/* {console.log(props.component)} */}
       <h2>{props.component.heading}</h2>
       <div>Price: {props.component.price}</div>
       <div
@@ -65,8 +78,8 @@ const LocationWrapper = (props) => {
   )
 }
 
-TextWrapper.propTypes = HeroWrapper.propTypes = ScheduleWrapper.propTypes = CostWrapper.propTypes = LocationWrapper.propTypes = {
+TextWrapper.propTypes = HeroWrapper.propTypes = ScheduleWrapper.propTypes = CostCollectionWrapper.propTypes = CostWrapper.propTypes = LocationWrapper.propTypes = {
   component: PropTypes.object
 }
 
-export { TextWrapper, HeroWrapper, ScheduleWrapper, CostWrapper, LocationWrapper }
+export { TextWrapper, HeroWrapper, ScheduleWrapper, CostCollectionWrapper, CostWrapper, LocationWrapper }
