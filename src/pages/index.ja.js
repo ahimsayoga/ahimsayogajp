@@ -11,11 +11,10 @@ class IndexJaPage extends React.PureComponent {
         {page.map(({ node }, i) => (
           <div key={node.id}>
             <h2>{node.title}</h2>
-            {console.log(node) }
             {
               node.components.map(( component ) => {
-                if (component.parentalias !== undefined) {
-                  const componentName = component.parentalias.id + 'Wrapper';
+                if (component.parent !== undefined) {
+                  const componentName = component.parent.id + 'Wrapper';
                   const ContentfulWrapper = contentfulWrapper[componentName];
 
                   return (
@@ -23,7 +22,7 @@ class IndexJaPage extends React.PureComponent {
                   );
                 }
                 else {
-                  console.log('Invalid component: ' + component)
+                  console.log('Component: ' + component.id + ' has no Parent ID')
                 }
               })
             }
@@ -49,7 +48,7 @@ query PageJaQuery {
         components {
           ... on ContentfulText {
             id
-            parentalias: parent {
+            parent {
               id
             }
             body {
@@ -60,7 +59,7 @@ query PageJaQuery {
           }
           ... on ContentfulHero {
             id
-            parentalias: parent {
+            parent {
               id
             }
             body {
@@ -83,13 +82,13 @@ query PageJaQuery {
           }
           ... on ContentfulSchedule {
             id
-            parentalias: parent {
+            parent {
               id
             }
             heading
             components {
               id
-              parentalias: parent {
+              parent {
                 id
               }
               title
@@ -103,13 +102,13 @@ query PageJaQuery {
           }
           ... on ContentfulCollection {
             id
-            parentalias: parent {
+            parent {
               id
             }
             heading
             components {
               id
-              parentalias: parent {
+              parent {
                 id
               }
               heading
@@ -123,13 +122,13 @@ query PageJaQuery {
           }
           ... on ContentfulLocationMap {
             id
-            parentalias: parent {
+            parent {
               id
             }
             heading
             components {
               id
-              parentalias: parent {
+              parent {
                 id
               }
               heading

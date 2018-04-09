@@ -85,12 +85,16 @@ const CollectionWrapper = (props) => {
       <h2>{props.component.heading}</h2>
       <div>
         {props.component.components.map(( component ) => {
-          if (component.parentalias !== undefined) {
-            const componentName = component.parentalias.id + 'Wrapper';
+          if (component.parent !== undefined) {
+            const componentName = component.parent.id + 'Wrapper';
             const ContentfulWrapper = contentfulWrapper[componentName];
+
             return (
               <ContentfulWrapper key={component.id} component={component} />
             )
+          }
+          else {
+            console.log('Component: ' + component.id + ' has no Parent ID')
           }
         })}
       </div>
