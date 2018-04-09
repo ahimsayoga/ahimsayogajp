@@ -29,12 +29,12 @@ const HeroWrapper = (props) => (
 const ScheduleWrapper = (props) => {
   return (
     <div>
-      {props.component.items.map(( item ) => (
-        <div key={item.id}>
-          <h2>{item.title}</h2>
-          <div>Day: {item.day}</div>
-          <div>Time: {item.time}</div>
-          <div>Slug: {item.location.slug}</div>
+      {props.component.components.map(( component ) => (
+        <div key={component.id}>
+          <h2>{component.title}</h2>
+          <div>Day: {component.day}</div>
+          <div>Time: {component.time}</div>
+          <div>Slug: {component.location.slug}</div>
         </div>
       ))}
     </div>
@@ -85,11 +85,13 @@ const CollectionWrapper = (props) => {
       <h2>{props.component.heading}</h2>
       <div>
         {props.component.components.map(( component ) => {
-          const componentName = component.parent.id + 'Wrapper';
-          const ContentfulWrapper = contentfulWrapper[componentName];
-          return (
-            <ContentfulWrapper key={component.id} component={component} />
-          )
+          if (component.parentalias !== undefined) {
+            const componentName = component.parentalias.id + 'Wrapper';
+            const ContentfulWrapper = contentfulWrapper[componentName];
+            return (
+              <ContentfulWrapper key={component.id} component={component} />
+            )
+          }
         })}
       </div>
     </div>

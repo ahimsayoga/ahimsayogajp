@@ -10,12 +10,17 @@ class LandingTemplate extends React.Component {
       <div>
         <h1>{page.title}</h1>
           {
-            page.components.map(( {component} ) => {
-              const componentName = component.parent.id + 'Wrapper';
-              const ContentfulWrapper = contentfulWrapper[componentName];
-              return (
-                <ContentfulWrapper key={element.id} {...component} />
-              );
+            page.components.map(( component ) => {
+              console.log(component)
+              if (component.parentalias !== undefined) {
+                const componentName = component.parentalias.id + 'Wrapper';
+                const ContentfulWrapper = contentfulWrapper[componentName];
+                return (
+                  <ContentfulWrapper key={component.id} component={component} />
+                );
+              } else {
+                console.log('Invalid component: ' + component)
+              }
             })
           }
       </div>
@@ -32,7 +37,7 @@ query landingQuery($id: String!) {
     components {
       ... on ContentfulText {
         id
-        parent {
+        parentalias: parent {
           id
         }
         body {
@@ -43,7 +48,7 @@ query landingQuery($id: String!) {
       }
       ... on ContentfulHero {
         id
-        parent {
+        parentalias: parent {
           id
         }
         body {
@@ -66,12 +71,15 @@ query landingQuery($id: String!) {
       }
       ... on ContentfulSchedule {
         id
-        parent {
+        parentalias: parent {
           id
         }
         heading
-        items {
+        components {
           id
+          parentalias: parent {
+            id
+          }
           title
           day
           time
@@ -83,13 +91,13 @@ query landingQuery($id: String!) {
       }
       ... on ContentfulCollection {
         id
-        parent {
+        parentalias: parent {
           id
         }
         heading
         components {
           id
-          parent {
+          parentalias: parent {
             id
           }
           heading
@@ -103,12 +111,15 @@ query landingQuery($id: String!) {
       }
       ... on ContentfulLocationMap {
         id
-        parent {
+        parentalias: parent {
           id
         }
         heading
         components {
           id
+          parentalias: parent {
+            id
+          }
           heading
           location {
             lon
