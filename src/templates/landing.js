@@ -10,7 +10,8 @@ class LandingTemplate extends React.Component {
       <div>
         <h1>{page.title}</h1>
           {
-            page.components.map(( {component} ) => {
+            page.components.map(( component ) => {
+              console.log(component)
               const componentName = component.parent.id + 'Wrapper';
               const ContentfulWrapper = contentfulWrapper[componentName];
               return (
