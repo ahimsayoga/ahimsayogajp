@@ -93,7 +93,7 @@ query PageJaQuery {
               }
             }
           }
-          ... on ContentfulCostCollection {
+          ... on ContentfulCollection {
             id
             parent {
               id
@@ -101,6 +101,9 @@ query PageJaQuery {
             heading
             components {
               id
+              parent {
+                id
+              }
               heading
               price
               body {
@@ -110,7 +113,7 @@ query PageJaQuery {
               }
             }
           }
-          ... on ContentfulLocationCollection {
+          ... on ContentfulLocationMap {
             id
             parent {
               id

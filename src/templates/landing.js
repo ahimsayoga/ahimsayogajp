@@ -10,12 +10,11 @@ class LandingTemplate extends React.Component {
       <div>
         <h1>{page.title}</h1>
           {
-            page.components.map(( element ) => {
-              const componentName = element.parent.id + 'Wrapper';
+            page.components.map(( {component} ) => {
+              const componentName = component.parent.id + 'Wrapper';
               const ContentfulWrapper = contentfulWrapper[componentName];
-
               return (
-                <ContentfulWrapper key={element.id} component={element} />
+                <ContentfulWrapper key={element.id} {...component} />
               );
             })
           }
@@ -82,7 +81,7 @@ query landingQuery($id: String!) {
           }
         }
       }
-      ... on ContentfulCostCollection {
+      ... on ContentfulCollection {
         id
         parent {
           id
@@ -90,6 +89,9 @@ query landingQuery($id: String!) {
         heading
         components {
           id
+          parent {
+            id
+          }
           heading
           price
           body {
@@ -99,7 +101,7 @@ query landingQuery($id: String!) {
           }
         }
       }
-      ... on ContentfulLocationCollection {
+      ... on ContentfulLocationMap {
         id
         parent {
           id
