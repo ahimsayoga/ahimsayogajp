@@ -16,7 +16,9 @@ class LandingTemplate extends React.Component {
               console.log(component.heading)
               console.log(component.parent)
               const componentName = component.parent.id + 'Wrapper';
+              console.log(componentName)
               const ContentfulWrapper = contentfulWrapper[componentName];
+              console.log(ContentfulWrapper)
               return (
                 <ContentfulWrapper key={element.id} {...component} />
               );
