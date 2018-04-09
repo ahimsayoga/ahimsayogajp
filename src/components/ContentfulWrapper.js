@@ -85,7 +85,7 @@ const CollectionWrapper = (props) => {
       <h2>{props.component.heading}</h2>
       <div>
         {props.component.components.map(( component ) => {
-          const componentName = component.parent.id + 'Wrapper';
+          const componentName = component.parentalias.id + 'Wrapper';
           const ContentfulWrapper = contentfulWrapper[componentName];
           return (
             <ContentfulWrapper key={component.id} component={component} />

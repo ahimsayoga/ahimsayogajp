@@ -11,12 +11,18 @@ class IndexEnPage extends React.PureComponent {
           <div key={node.id}>
             <h2>{node.title}</h2>
             {
-              node.components.map(( element ) => {
-                const componentName = element.parent.id + 'Wrapper';
-                const ContentfulWrapper = contentfulWrapper[componentName];
-                return (
-                  <ContentfulWrapper key={element.id} component={element} />
-                );
+              node.components.map(( component ) => {
+                if (component.parentalias !== 'undefined') {
+                  const componentName = component.parentalias.id + 'Wrapper';
+                  const ContentfulWrapper = contentfulWrapper[componentName];
+
+                  return (
+                    <ContentfulWrapper key={component.id} component={component} />
+                  );
+                }
+                else {
+                  console.log('Invalid component: ' + component)
+                }
               })
             }
           </div>
@@ -41,7 +47,7 @@ query PageEnQuery {
         components {
           ... on ContentfulText {
             id
-            parent {
+            parentalias: parent {
               id
             }
             body {
@@ -52,7 +58,7 @@ query PageEnQuery {
           }
           ... on ContentfulHero {
             id
-            parent {
+            parentalias: parent {
               id
             }
             body {
@@ -75,13 +81,13 @@ query PageEnQuery {
           }
           ... on ContentfulSchedule {
             id
-            parent {
+            parentalias: parent {
               id
             }
             heading
             components {
               id
-              parent {
+              parentalias: parent {
                 id
               }
               title
@@ -95,13 +101,13 @@ query PageEnQuery {
           }
           ... on ContentfulCollection {
             id
-            parent {
+            parentalias: parent {
               id
             }
             heading
             components {
               id
-              parent {
+              parentalias: parent {
                 id
               }
               heading
@@ -115,13 +121,13 @@ query PageEnQuery {
           }
           ... on ContentfulLocationMap {
             id
-            parent {
+            parentalias: parent {
               id
             }
             heading
             components {
               id
-              parent {
+              parentalias: parent {
                 id
               }
               heading

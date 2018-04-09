@@ -11,8 +11,9 @@ class LandingTemplate extends React.Component {
         <h1>{page.title}</h1>
           {
             page.components.map(( component ) => {
-              if (component.parent !== 'undefined') {
-                const componentName = component.parent.id + 'Wrapper';
+              console.log(component)
+              if (component.parentalias !== 'undefined') {
+                const componentName = component.parentalias.id + 'Wrapper';
                 const ContentfulWrapper = contentfulWrapper[componentName];
                 return (
                   <ContentfulWrapper key={component.id} {...component} />
@@ -36,7 +37,7 @@ query landingQuery($id: String!) {
     components {
       ... on ContentfulText {
         id
-        parent {
+        parentalias: parent {
           id
         }
         body {
@@ -47,7 +48,7 @@ query landingQuery($id: String!) {
       }
       ... on ContentfulHero {
         id
-        parent {
+        parentalias: parent {
           id
         }
         body {
@@ -70,13 +71,13 @@ query landingQuery($id: String!) {
       }
       ... on ContentfulSchedule {
         id
-        parent {
+        parentalias: parent {
           id
         }
         heading
         components {
           id
-          parent {
+          parentalias: parent {
             id
           }
           title
@@ -90,13 +91,13 @@ query landingQuery($id: String!) {
       }
       ... on ContentfulCollection {
         id
-        parent {
+        parentalias: parent {
           id
         }
         heading
         components {
           id
-          parent {
+          parentalias: parent {
             id
           }
           heading
@@ -110,13 +111,13 @@ query landingQuery($id: String!) {
       }
       ... on ContentfulLocationMap {
         id
-        parent {
+        parentalias: parent {
           id
         }
         heading
         components {
           id
-          parent {
+          parentalias: parent {
             id
           }
           heading
