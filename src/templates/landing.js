@@ -11,17 +11,15 @@ class LandingTemplate extends React.Component {
         <h1>{page.title}</h1>
           {
             page.components.map(( component ) => {
-              console.log('ID' + component.id)
-              console.log('title' + component.title)
-              console.log('heading' + component.heading)
-              console.log('parent' + component.parent)
-              const componentName = component.parent.id + 'Wrapper';
-              console.log('componentName' + componentName)
-              const ContentfulWrapper = contentfulWrapper[componentName];
-              console.log('ContentfulWrapper' + ContentfulWrapper)
-              if (ContentfulWrapper) return (
-                <ContentfulWrapper key={element.id} {...component} />
-              );
+              if (component.parent !== 'undefined') {
+                const componentName = component.parent.id + 'Wrapper';
+                const ContentfulWrapper = contentfulWrapper[componentName];
+                return (
+                  <ContentfulWrapper key={element.id} {...component} />
+                );
+              } else {
+                console.log('Invalid component: ' + component)
+              }
             })
           }
       </div>
