@@ -82,8 +82,11 @@ query PageJaQuery {
               id
             }
             heading
-            items {
+            components {
               id
+              parent {
+                id
+              }
               title
               day
               time
@@ -121,6 +124,9 @@ query PageJaQuery {
             heading
             components {
               id
+              parent {
+                id
+              }
               heading
               location {
                 lon

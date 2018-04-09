@@ -74,8 +74,11 @@ query landingQuery($id: String!) {
           id
         }
         heading
-        items {
+        components {
           id
+          parent {
+            id
+          }
           title
           day
           time
@@ -113,6 +116,9 @@ query landingQuery($id: String!) {
         heading
         components {
           id
+          parent {
+            id
+          }
           heading
           location {
             lon

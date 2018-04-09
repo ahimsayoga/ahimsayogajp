@@ -79,8 +79,11 @@ query PageEnQuery {
               id
             }
             heading
-            items {
+            components {
               id
+              parent {
+                id
+              }
               title
               day
               time
@@ -118,6 +121,9 @@ query PageEnQuery {
             heading
             components {
               id
+              parent {
+                id
+              }
               heading
               location {
                 lon
