@@ -2,6 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Img from 'gatsby-image'
 
+import * as contentfulWrapper from './ContentfulWrapper'
+
+
 const TextWrapper = (props) => (
   <div>
     <div
@@ -38,36 +41,19 @@ const ScheduleWrapper = (props) => {
   )
 }
 
-const CostCollectionWrapper = (props) => {
-  return (
-    <div>
-      <h2>{props.component.heading}</h2>
-      <div>
-        {props.component.components.map(( component ) => (
-          <div key={component.id}>
-            <CostWrapper component={component} />
-          </div>
-        ))}
-      </div>
-    </div>
-  )
-}
+const CostWrapper = (props) => (
+  <div>
+    <h2>{props.component.heading}</h2>
+    <div>{props.component.price}</div>
+    <div
+      dangerouslySetInnerHTML={{
+        __html: props.component.body.childMarkdownRemark.html
+      }}
+    />
+  </div>
+)
 
-const CostWrapper = (props) => {
-  return (
-    <div>
-      <h2>{props.component.heading}</h2>
-      <div>Price: {props.component.price}</div>
-      <div
-        dangerouslySetInnerHTML={{
-          __html: props.component.body.childMarkdownRemark.html
-        }}
-      />
-    </div>
-  )
-}
-
-const LocationCollectionWrapper = (props) => {
+const LocationMapWrapper = (props) => {
   return (
     <div>
       <h2>{props.component.heading}</h2>
@@ -93,8 +79,35 @@ const LocationWrapper = (props) => {
   )
 }
 
-TextWrapper.propTypes = HeroWrapper.propTypes = ScheduleWrapper.propTypes = CostCollectionWrapper.propTypes = CostWrapper.propTypes = LocationCollectionWrapper.propTypes = LocationWrapper.propTypes = {
+const CollectionWrapper = (props) => {
+  return (
+    <div>
+      <h2>{props.component.heading}</h2>
+      <div>
+        {props.component.components.map(( component ) => {
+          const componentName = component.parent.id + 'Wrapper';
+          const ContentfulWrapper = contentfulWrapper[componentName];
+          return (
+            <ContentfulWrapper key={component.id} component={component} />
+          )
+        })}
+      </div>
+    </div>
+  )
+}
+
+CollectionWrapper.propTypes = TextWrapper.propTypes = HeroWrapper.propTypes =
+ScheduleWrapper.propTypes = CostWrapper.propTypes = LocationMapWrapper.propTypes =
+LocationWrapper.propTypes = {
   component: PropTypes.object
 }
 
-export { TextWrapper, HeroWrapper, ScheduleWrapper, CostCollectionWrapper, CostWrapper, LocationCollectionWrapper, LocationWrapper }
+export {
+  CollectionWrapper,
+  TextWrapper,
+  HeroWrapper,
+  ScheduleWrapper,
+  CostWrapper,
+  LocationMapWrapper,
+  LocationWrapper
+}

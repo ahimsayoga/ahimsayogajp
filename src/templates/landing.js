@@ -82,7 +82,7 @@ query landingQuery($id: String!) {
           }
         }
       }
-      ... on ContentfulCostCollection {
+      ... on ContentfulCollection {
         id
         parent {
           id
@@ -90,6 +90,9 @@ query landingQuery($id: String!) {
         heading
         components {
           id
+          parent {
+            id
+          }
           heading
           price
           body {
@@ -99,7 +102,7 @@ query landingQuery($id: String!) {
           }
         }
       }
-      ... on ContentfulLocationCollection {
+      ... on ContentfulLocationMap {
         id
         parent {
           id

@@ -90,7 +90,7 @@ query PageEnQuery {
               }
             }
           }
-          ... on ContentfulCostCollection {
+          ... on ContentfulCollection {
             id
             parent {
               id
@@ -98,6 +98,9 @@ query PageEnQuery {
             heading
             components {
               id
+              parent {
+                id
+              }
               heading
               price
               body {
@@ -107,7 +110,7 @@ query PageEnQuery {
               }
             }
           }
-          ... on ContentfulLocationCollection {
+          ... on ContentfulLocationMap {
             id
             parent {
               id
