@@ -12,7 +12,7 @@ class IndexEnPage extends React.PureComponent {
             <h2>{node.title}</h2>
             {
               node.components.map(( component ) => {
-                if (component.parentalias !== 'undefined') {
+                if (component.parentalias !== undefined) {
                   const componentName = component.parentalias.id + 'Wrapper';
                   const ContentfulWrapper = contentfulWrapper[componentName];
 

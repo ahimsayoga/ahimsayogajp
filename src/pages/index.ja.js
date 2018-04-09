@@ -14,7 +14,7 @@ class IndexJaPage extends React.PureComponent {
             {console.log(node) }
             {
               node.components.map(( component ) => {
-                if (component.parentalias !== 'undefined') {
+                if (component.parentalias !== undefined) {
                   const componentName = component.parentalias.id + 'Wrapper';
                   const ContentfulWrapper = contentfulWrapper[componentName];
 

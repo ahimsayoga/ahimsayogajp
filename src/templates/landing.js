@@ -12,11 +12,11 @@ class LandingTemplate extends React.Component {
           {
             page.components.map(( component ) => {
               console.log(component)
-              if (component.parentalias !== 'undefined') {
+              if (component.parentalias !== undefined) {
                 const componentName = component.parentalias.id + 'Wrapper';
                 const ContentfulWrapper = contentfulWrapper[componentName];
                 return (
-                  <ContentfulWrapper key={component.id} {...component} />
+                  <ContentfulWrapper key={component.id} component={component} />
                 );
               } else {
                 console.log('Invalid component: ' + component)
