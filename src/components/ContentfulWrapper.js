@@ -9,7 +9,7 @@ const TextWrapper = (props) => (
   <div>
     <div
       dangerouslySetInnerHTML={{
-        __html: props.component.body.childMarkdownRemark.html
+        __html: props.body.childMarkdownRemark.html
       }}
     />
   </div>
@@ -19,17 +19,17 @@ const HeroWrapper = (props) => (
   <div>
     <div
       dangerouslySetInnerHTML={{
-        __html: props.component.body.childMarkdownRemark.html
+        __html: props.body.childMarkdownRemark.html
       }}
     />
-    <Img resolutions={props.component.media.resolutions} />
+    <Img resolutions={props.media.resolutions} />
   </div>
 )
 
 const ScheduleWrapper = (props) => {
   return (
     <div>
-      {props.component.components.map(( component ) => (
+      {props.components.map(( component ) => (
         <div key={component.id}>
           <h2>{component.title}</h2>
           <div>Day: {component.day}</div>
@@ -43,11 +43,11 @@ const ScheduleWrapper = (props) => {
 
 const CostWrapper = (props) => (
   <div>
-    <h2>{props.component.heading}</h2>
-    <div>{props.component.price}</div>
+    <h2>{props.heading}</h2>
+    <div>{props.price}</div>
     <div
       dangerouslySetInnerHTML={{
-        __html: props.component.body.childMarkdownRemark.html
+        __html: props.body.childMarkdownRemark.html
       }}
     />
   </div>
@@ -56,12 +56,10 @@ const CostWrapper = (props) => (
 const LocationMapWrapper = (props) => {
   return (
     <div>
-      <h2>{props.component.heading}</h2>
+      <h2>{props.heading}</h2>
       <div>
-        {props.component.components.map(( component ) => (
-          <div key={component.id}>
-            <LocationWrapper component={component} />
-          </div>
+        {props.components.map(( component ) => (
+          <LocationWrapper {...component} key={component.id} />
         ))}
       </div>
     </div>
@@ -72,9 +70,9 @@ const LocationWrapper = (props) => {
   return (
     <div>
       {/* {console.log(props.component.location)} */}
-      <h2>{props.component.heading}</h2>
-      <div>Lat: {props.component.location.lat}</div>
-      <div>Lon: {props.component.location.lon}</div>
+      <h2>{props.heading}</h2>
+      <div>Lat: {props.location.lat}</div>
+      <div>Lon: {props.location.lon}</div>
     </div>
   )
 }
@@ -82,15 +80,15 @@ const LocationWrapper = (props) => {
 const CollectionWrapper = (props) => {
   return (
     <div>
-      <h2>{props.component.heading}</h2>
+      <h2>{props.heading}</h2>
       <div>
-        {props.component.components.map(( component ) => {
+        {props.components.map(( component ) => {
           if (component.parent !== undefined) {
             const componentName = component.parent.id + 'Wrapper';
             const ContentfulWrapper = contentfulWrapper[componentName];
 
             return (
-              <ContentfulWrapper key={component.id} component={component} />
+              <ContentfulWrapper {...component} key={component.id}  />
             )
           }
           else {
