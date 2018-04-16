@@ -5,6 +5,7 @@ import styled from 'styled-components'
 
 import SelectLanguage from './SelectLanguage'
 import MainMenu from './MainMenu'
+import logo from '../pages/assets/images/logo.png'
 
 // Create a Wrapper component that'll render a <div> tag with some styles
 const HeaderWrapper = styled.div`
@@ -21,7 +22,7 @@ const HeaderInner = styled.div`
 const Header = (props) => (
   <HeaderWrapper>
     <HeaderInner>
-      <h1 style={{ margin: 0 }}>
+      <h1 style={{ margin: 0, display: 'inline-block' }}>
         <Link
           to='/'
           style={{
@@ -29,11 +30,11 @@ const Header = (props) => (
             textDecoration: 'none'
           }}
         >
-          Ahimsa Yoga
+          <img src={logo} width="150px" alt="Logo" />
         </Link>
       </h1>
-      <SelectLanguage langs={props.langs} />
       <MainMenu locale={props.locale} />
+      <SelectLanguage langs={props.langs} />
     </HeaderInner>
   </HeaderWrapper>
 )

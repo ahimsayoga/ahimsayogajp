@@ -10,7 +10,7 @@ const ListLink = props =>
   </li>
 
 const ListLinkByLang = props =>
-  <ul style={{ listStyle: `none`, float: `right` }}>
+  <ul style={{ listStyle: `none`, display: 'inline-block' }}>
     <ListLink to={'/' + props.locale + '/'}>Home</ListLink>
     <ListLink to={'/' + props.locale + '/about'}>About</ListLink>
     <ListLink to={'/' + props.locale + '/schedule'}>Schedule</ListLink>
@@ -18,9 +18,7 @@ const ListLinkByLang = props =>
 
 const MainMenu = (props) => {
   return (
-    <section>
-      <ListLinkByLang locale={props.locale} />
-    </section>
+    <ListLinkByLang locale={props.locale} />
   )
 }
 
