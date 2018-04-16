@@ -38,9 +38,8 @@
   "license": "MIT",
   "main": "n/a",
   "scripts": {
-    "copyfiles": "cp -r static/* public/",
-    "develop": "npm copyfiles && gatsby develop",
-    "build": "npm copyfiles && gatsby build",
+    "develop": "gatsby develop",
+    "build": "gatsby build",
     "start": "gatsby serve"
   }
 }
