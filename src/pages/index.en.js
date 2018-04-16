@@ -17,7 +17,7 @@ class IndexEnPage extends React.PureComponent {
                   const ContentfulWrapper = contentfulWrapper[componentName];
 
                   return (
-                    <ContentfulWrapper key={component.id} component={component} />
+                    <ContentfulWrapper {...component} key={component.id} />
                   );
                 }
                 else {
