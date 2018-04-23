@@ -17,11 +17,8 @@ import 'intl/locale-data/jsonp/ja'
 // Create a Wrapper component that'll render a <section> tag with some styles
 const ContentWrapper = styled.section`
   margin: 0 auto;
-  max-width: 650px;
   margin-top: ${rhythm(1.5)};
   margin-bottom: ${rhythm(1.5)};
-  padding-left: ${rhythm(3 / 4)};
-  padding-right: ${rhythm(3 / 4)};
 `
 
 // add concatenated locale data

@@ -22,7 +22,8 @@ const HeroWrapper = (props) => (
         __html: props.body.childMarkdownRemark.html
       }}
     />
-    <Img resolutions={props.media.resolutions} />
+    {console.log(props.media)}
+    <Img sizes={props.media.sizes} />
   </div>
 )
 
