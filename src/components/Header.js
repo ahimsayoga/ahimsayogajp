@@ -9,33 +9,35 @@ import logo from '../pages/assets/images/logo.png'
 
 // Create a Wrapper component that'll render a <div> tag with some styles
 const HeaderWrapper = styled.div`
-  background: rebeccapurple;
+  background: white;
   margin-bottom: 1.45rem;
 `
 
 const HeaderInner = styled.div`
   margin: 0 auto;
   max-width: 960px;
-  padding: 1.45rem 1.0875rem;
+  padding: 1rem 0 1rem 0;
 `
 
 const Header = (props) => (
   <HeaderWrapper>
-    <HeaderInner>
-      <h1 style={{ margin: 0, display: 'inline-block' }}>
-        <Link
-          to='/'
-          style={{
-            color: 'white',
-            textDecoration: 'none'
-          }}
-        >
-          <img src={logo} width="150px" alt="Logo" />
-        </Link>
-      </h1>
-      <MainMenu locale={props.locale} />
-      <SelectLanguage langs={props.langs} />
-    </HeaderInner>
+    <header>
+      <HeaderInner>
+        <h1 style={{ margin: 0, display: 'inline-block' }}>
+          <Link
+            to='/'
+            style={{
+              color: 'white',
+              textDecoration: 'none'
+            }}
+          >
+            <img src={logo} width="150px" alt="Logo" style={{margin: 0}} />
+          </Link>
+        </h1>
+        <MainMenu locale={props.locale} />
+        <SelectLanguage langs={props.langs} />
+      </HeaderInner>
+    </header>
   </HeaderWrapper>
 )
 
