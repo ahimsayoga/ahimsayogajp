@@ -68,15 +68,14 @@ query PageJaQuery {
               }
             }
             media {
-              resolutions {
+              sizes {
                 base64
                 aspectRatio
-                width
-                height
                 src
                 srcSet
                 srcWebp
                 srcSetWebp
+                sizes
               }
             }
           }
