@@ -14,6 +14,7 @@ const ListLinkByLang = props =>
     <ListLink to={'/' + props.locale + '/'}>Home</ListLink>
     <ListLink to={'/' + props.locale + '/about'}>About</ListLink>
     <ListLink to={'/' + props.locale + '/schedule'}>Schedule</ListLink>
+    <ListLink to={'/' + props.locale + '/contact'}>Contact</ListLink>
   </ul>
 
 const MainMenu = (props) => {
